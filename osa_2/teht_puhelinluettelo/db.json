@@ -1,16 +1,6 @@
 {
   "persons": [
     {
-      "name": "Arto Hellas",
-      "number": "040-1234567",
-      "id": 1
-    },
-    {
-      "name": "Martti Tienari",
-      "number": "050-7654321",
-      "id": 2
-    },
-    {
       "name": "Arto Järvinen",
       "number": "040-1122334",
       "id": 3
@@ -19,6 +9,11 @@
       "name": "Lea Kutvonen",
       "number": "050-3344556",
       "id": 4
+    },
+    {
+      "name": "Matti Meikäläinen",
+      "number": "045-1122334",
+      "id": 5
     }
   ]
 }

@@ -1,8 +1,11 @@
 import React from 'react'
 
-const Persons = ({persons}) => {
+const Persons = ({persons, deletoi}) => {
   const rows = () => persons.map(person => 
-    <p key={person.name}>{person.name} {person.number}</p>
+    <div key={person.id}>
+      <p>{person.name} {person.number}</p>
+      <button onClick={() => deletoi(person.id)}>poista</button>
+    </div>
   )
 
   return (
