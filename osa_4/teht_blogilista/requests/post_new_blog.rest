@@ -1,0 +1,10 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjVjNjlhMWUzNzJhNmVjMWQxMDFhYzhiOSIsImlhdCI6MTU1MDQyNjYxNX0.v96tSUQ8g3o09WFGQK6p2RRhRrsAt8Y36jvrOWgnGpM
+
+{
+	"title": "Testi",
+	"author": "Taina Testaaja",
+	"url": "www.testausblogi.fi",
+	"likes": 3
+}
