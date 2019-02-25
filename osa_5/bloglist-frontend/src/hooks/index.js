@@ -8,12 +8,15 @@ const useField = (type) => {
 	}
 
 	const reset = () => setValue('')
+	const field = {
+		type: type,
+		value: value,
+		onChange: onChange
+	}
 
 	return {
 		reset,
-		type,
-		value,
-		onChange
+		field
 	}
 }
 

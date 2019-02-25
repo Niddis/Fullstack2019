@@ -5,6 +5,7 @@ import loginService from './services/login'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
+import BlogForm from './components/BlogForm'
 import useField from './hooks/index'
 
 const App = () => {
@@ -17,9 +18,8 @@ const App = () => {
 	const titleField = useField('text')
 	const authorField = useField('text')
 	const urlField = useField('text')
-	const username = usernameField.value
-	const password = passwordField.value
-
+	const username = usernameField.field.value
+	const password = passwordField.field.value
 
 	useEffect(() => {
 		blogService.getAll().then(blogs =>
@@ -69,20 +69,22 @@ const App = () => {
 		event.preventDefault()
 
 		const blogObject = {
-			title: titleField.value,
-			author: authorField.value,
-			url: urlField.value
+			title: titleField.field.value,
+			author: authorField.field.value,
+			url: urlField.field.value
 		}
 
 		try {
 			const returnedBlog = await blogService.create(blogObject)
-			//console.log(returnedBlog)
 			const newBlogs = blogs.concat(returnedBlog)
 			setBlogs(newBlogs)
 			notify(`new blog added: ${returnedBlog.title}`)
 		} catch(exception) {
 			notify('something went wrong...', 'error')
 		}
+		titleField.reset()
+		authorField.reset()
+		urlField.reset()
 	}
 
 	const updateBlog = async (id) => {
@@ -115,28 +117,13 @@ const App = () => {
 		return (
 			<Togglable buttonLabel='login'>
 				<LoginForm
-					username={usernameField}
-					password={passwordField}
+					username={usernameField.field}
+					password={passwordField.field}
 					handleSubmit={handleLogin}
 				/>
 			</Togglable>
 		)
 	}
-
-	const blogForm = () => (
-		<form onSubmit={addBlog}>
-			<div>
-        title: <input {...titleField}/>
-			</div>
-			<div>
-        author: <input {...authorField}/>
-			</div>
-			<div>
-        url: <input {...urlField}/>
-			</div>
-			<button type="submit">create</button>
-		</form>
-	)
 
 	if (user === null) {
 		return (
@@ -150,7 +137,7 @@ const App = () => {
 
 	return (
 		<div>
-			<h2>blogs</h2>
+			<h2>Blogs</h2>
 			<Notification notification={notification} />
 
 			<div>
@@ -159,7 +146,7 @@ const App = () => {
 
 			<button onClick={handleClick}>kirjaudu ulos</button>
 			<h2>Create new</h2>
-			{blogForm()}
+			<BlogForm handleSubmit={addBlog} title={titleField.field} author={authorField.field} url={urlField.field}/>
 			{blogs.sort((b1, b2) => b2.likes - b1.likes).map(blog =>
 				<Blog key={blog.id} blog={blog} updateBlog={updateBlog} deleteBlog={deleteBlog} user={user}/>
 			)}
