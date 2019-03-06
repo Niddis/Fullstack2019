@@ -1,8 +1,4 @@
-const initialstate = 'Tämä on aloitusviesti'
-
 const notificationReducer = (state = null, action) => {
-	console.log('state now: ', state)
-	console.log('action ', action)
 	switch (action.type) {
 		case 'SET_NOTIFICATION':
 			return action.notification
@@ -13,16 +9,17 @@ const notificationReducer = (state = null, action) => {
 	}
 }
 
-export const notificationChange = notification => {
-	return {
-		type: 'SET_NOTIFICATION',
-		notification,
-	}
-}
-
-export const clearNotification = () => {
-	return {
-		type: 'CLEAR_NOTIFICATION'
+export const notificationChange = (notification, time) => {
+	return async dispatch => {
+		dispatch({
+			type: 'SET_NOTIFICATION',
+			notification,
+		})
+		setTimeout(() => {
+			dispatch({
+				type: 'CLEAR_NOTIFICATION'
+			})
+		}, time*1000)
 	}
 }
 
