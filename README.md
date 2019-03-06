@@ -1,3 +1,3 @@
-Fullstack 2019
+# Fullstack 2019
 
-Tämä on Helsingin yliopiston Full Stack -websovelluskehitys -kurssin repo.
+Tämä repo liittyy Helsingin yliopiston Full Stack -websovelluskehitys -kurssiin. Kurssin materiaalit löytyvät osoitteesta https://fullstack-hy2019.github.io/
